@@ -10,7 +10,6 @@ import Foundation
 class Expenses : ObservableObject{
     @Published var personal = [ExpenseItem](){
         
-        
         didSet{
             let encoder = JSONEncoder()
             
@@ -19,19 +18,7 @@ class Expenses : ObservableObject{
             }
         }
     }
-    
-//    @Published var business = [ExpenseItem](){
-//
-//        didSet{
-//            let encoder = JSONEncoder()
-//
-//            if let encoded = try? encoder.encode(business){
-//                UserDefaults.standard.set(encoded, forKey: "Business")
-//            }
-//        }
-//    }
 
-    
     init(){
         if let savedItems = UserDefaults.standard.data(forKey: "Personal"){
             if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems){
@@ -40,14 +27,6 @@ class Expenses : ObservableObject{
             }
         }
         personal = []
-        
-//        if let savedItems = UserDefaults.standard.data(forKey: "Business"){
-//            if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems){
-//                business = decodedItems
-//                return
-//            }
-//        }
-//        business = []
     }
 }
 
@@ -62,7 +41,6 @@ class BusinessClass : ObservableObject{
             }
         }
     }
-    
     
     init() {
         if let savedItems = UserDefaults.standard.data(forKey: "Business"){

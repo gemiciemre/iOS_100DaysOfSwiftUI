@@ -38,14 +38,12 @@ struct AddView: View {
                             Text($0)
                         }
                     }
-                    
                 }
-                
             }
             .navigationTitle("Add Expense")
             .toolbar{
                 Button("Save"){
-                    let item = ExpenseItem(name:name,type:type, amount: amount,currencyCode: currencyCode)
+                    let item = ExpenseItem(name:name,type:type,amount: amount,currencyCode: currencyCode)
                     if item.type == "Personal"{
                         expenses.personal.append(item)
                     }
@@ -63,6 +61,6 @@ struct AddView: View {
 
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
-        AddView(expenses: Expenses(), businessExpenses : BusinessClass()) //burada ki hatayı anlamadım.
+        AddView(expenses: Expenses(), businessExpenses : BusinessClass())
     }
 }
