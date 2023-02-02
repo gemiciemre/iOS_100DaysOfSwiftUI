@@ -14,47 +14,103 @@ struct ContentView: View {
     let colomns = [
         GridItem(.adaptive(minimum: 150))
     ]
+
+    @State var toggleIsList : Bool = false
     
     var body: some View {
-        NavigationView{
-            ScrollView{
-                LazyVGrid(columns: colomns){
-                    ForEach(missions) { mission in
-                        NavigationLink{
-                            Text("DetailView")
-                        }label: {
-                            VStack{
-                                Image(mission.image)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 100, height: 100)
-                                    .padding()
-                                VStack{
-                                    Text(mission.displayName)
-                                        .font(.headline)
-                                        .foregroundColor(.white)
-                                    Text(mission.formattedLaunchDate)
-                                        .font(.caption)
-                                        .foregroundColor(.white.opacity(0.5))
+            NavigationView{
+                if !toggleIsList{
+                    ScrollView{
+                        LazyVGrid(columns: colomns){
+                            ForEach(missions) { mission in
+                                NavigationLink{
+                                    MissionView(mission: mission, astronauts: astronauts)
+                                }label: {
+                                    VStack{
+                                        Image(mission.image)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 100, height: 100)
+                                            .padding()
+                                        VStack{
+                                            Text(mission.displayName)
+                                                .font(.headline)
+                                                .foregroundColor(.white)
+                                            Text(mission.formattedLaunchDate)
+                                                .font(.caption)
+                                                .foregroundColor(.white.opacity(0.5))
+                                        }
+                                        .padding(.vertical)
+                                        .frame(maxWidth:.infinity)
+                                        .background(.lighBackground)
+                                    }
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(.lighBackground)
+                                    )
                                 }
-                                .padding(.vertical)
-                                .frame(maxWidth:.infinity)
-                                .background(.lighBackground)
                             }
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(.lighBackground)
-                            )
                         }
+                        .padding([.horizontal,.bottom])
+                    }
+                    .navigationTitle("Moonshot")
+                    .background(.darkBackground)
+                    .preferredColorScheme(.dark)
+                    .toolbar{
+                        Toggle(
+                            isOn: $toggleIsList,
+                            label: {
+                                Text(toggleIsList ? "List" : "Grid")
+                            }
+                        )
+                        .toggleStyle(SwitchToggleStyle())
                     }
                 }
-                .padding([.horizontal,.bottom])
-            }
-            .navigationTitle("Moonshot")
-            .background(.darkBackground)
-            .preferredColorScheme(.dark)
+                else{
+                    List{
+                        ForEach(missions) { mission in
+                            VStack{
+                                NavigationLink{
+                                    MissionView(mission: mission, astronauts: astronauts)
+                                }label: {
+                                    HStack{
+                                        Image(mission.image)
+                                            .resizable()
+                                            .frame(width: 50,height: 50)
+                                            .scaledToFit()
+                                        VStack{
+                                            Text(mission.displayName)
+                                                .font(.headline)
+                                                .foregroundColor(.white)
+                                            Text(mission.formattedLaunchDate)
+                                                .font(.caption)
+                                                .foregroundColor(.white.opacity(0.5))
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                        }
+                        .listRowBackground(Color.darkBackground.ignoresSafeArea())
+                        
+                        
+                    }
+                    .navigationTitle("Moonshot")
+                    .background(.darkBackground) // It dosent work
+                    .preferredColorScheme(.dark)
+                    .toolbar{
+                        Toggle(
+                            isOn: $toggleIsList,
+                            label:{
+                                Text(toggleIsList ? "List" : "Grid")
+                            }
+                        )
+                        .toggleStyle(SwitchToggleStyle(tint: .darkBackground))
+                    }
+                }
         }
+            
     }
 }
 
