@@ -115,6 +115,16 @@ struct Spirograph: Shape{
 //---------------------------
     
 
+struct Arrow : Shape{
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        
+        path.move(to: CGPoint)
+    }
+}
+
+
+
 
 
 
@@ -178,37 +188,38 @@ struct ContentView: View {
 //                }
 //            }
         
-        VStack{
-            Spacer()
-            
-            Spirograph(innerRadius: Int(innerRadius), outerRadius: Int(outerRadius), distance: Int(distance), amount: amountSpirograph)
-                .stroke(Color(hue: hue, saturation: 1, brightness: 1),lineWidth: 1)
-                .frame(width: 300,height: 300)
-            
-            Spacer()
-            
-            Group{
-                Text("Inner Radius: \(Int(innerRadius))")
-                Slider(value: $innerRadius, in: 10...150, step: 1)
-                    .padding([.horizontal,.bottom])
-                
-                Text("Outer Radius: \(Int(outerRadius))")
-                Slider(value: $outerRadius, in: 10...150, step: 1)
-                    .padding([.horizontal,.bottom])
-                
-                Text("Distance: \(Int(distance))")
-                Slider(value:$distance, in: 1...150, step: 1)
-                    .padding([.horizontal,.bottom])
-                
-                Text("Amount: \(amountSpirograph, format: .number.precision(.fractionLength(2)))")
-                Slider(value: $amountSpirograph)
-                    .padding([.horizontal,.bottom])
-                
-                Text("Color")
-                Slider(value: $hue)
-                    .padding(.horizontal)
-            }
-        }
+//        VStack{
+//            Spacer()
+//
+//            Spirograph(innerRadius: Int(innerRadius), outerRadius: Int(outerRadius), distance: Int(distance), amount: amountSpirograph)
+//                .stroke(Color(hue: hue, saturation: 1, brightness: 1),lineWidth: 1)
+//                .frame(width: 300,height: 300)
+//
+//            Spacer()
+//
+//            Group{
+//                Text("Inner Radius: \(Int(innerRadius))")
+//                Slider(value: $innerRadius, in: 10...150, step: 1)
+//                    .padding([.horizontal,.bottom])
+//
+//                Text("Outer Radius: \(Int(outerRadius))")
+//                Slider(value: $outerRadius, in: 10...150, step: 1)
+//                    .padding([.horizontal,.bottom])
+//
+//                Text("Distance: \(Int(distance))")
+//                Slider(value:$distance, in: 1...150, step: 1)
+//                    .padding([.horizontal,.bottom])
+//
+//                Text("Amount: \(amountSpirograph, format: .number.precision(.fractionLength(2)))")
+//                Slider(value: $amountSpirograph)
+//                    .padding([.horizontal,.bottom])
+//
+//                Text("Color")
+//                Slider(value: $hue)
+//                    .padding(.horizontal)
+//            }
+//        }
+        
         
         
     }
