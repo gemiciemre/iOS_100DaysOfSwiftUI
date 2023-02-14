@@ -8,15 +8,45 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var habits = Habits()
     @State private var showingAddHabit = false
+    @State private var increasing = false
+    @State private var decreasing = false
+    @State private var amount = 0
     
     var body: some View {
         NavigationView{
-            ScrollView{
-                Text("Deneme")
+            List{
+                Section{
+                    ForEach(habits.habitItems){item in
+                        NavigationLink{
+                            HabitView(habit: item)
+                        }label: {
+                            VStack{
+                                HStack(){
+                                    Stepper(value:$amount, in: 0...20){
+                                        Text("\(item.habitName) : \()")//
+                                    }
+    //                                Text(item.habitName)
+    //                                Spacer()
+    //                                Button{
+    //                                    increasing = true
+    //                                }label: {
+    //                                    Image(systemName: "minus")
+    //                                }.padding()
+    //                                Button{
+    //                                    increasing = true
+    //                                }label: {
+    //                                    Image(systemName: "plus")
+    //                                }
+                                }
+                            }
+                        }
+                    }
+                    .onDelete(perform: removeHabitItems)
+                }
             }
             .navigationTitle("Habit Tracker")
-            .padding([.horizontal,.bottom])
             .toolbar{
                 Button{
                     showingAddHabit = true
@@ -25,9 +55,13 @@ struct ContentView: View {
                 }
             }
         }
-
-        
-        
+        .sheet(isPresented: $showingAddHabit){
+            AddView(habits: habits)
+        }
+    }
+    
+    func removeHabitItems(at offset: IndexSet){
+        habits.habitItems.remove(atOffsets: offset)
     }
 }
 

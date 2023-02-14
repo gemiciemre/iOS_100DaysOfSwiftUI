@@ -7,18 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB18E8D6299B680B00F14CA3 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB18E8D5299B680B00F14CA3 /* AddView.swift */; };
+		EB18E8D8299BBA4600F14CA3 /* HabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB18E8D7299BBA4600F14CA3 /* HabitView.swift */; };
 		EBBCFCF8299ABFB1000803C1 /* Day47_Milestone_HabitTrackerAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBCFCF7299ABFB1000803C1 /* Day47_Milestone_HabitTrackerAppApp.swift */; };
 		EBBCFCFA299ABFB1000803C1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBCFCF9299ABFB1000803C1 /* ContentView.swift */; };
 		EBBCFCFC299ABFB3000803C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBBCFCFB299ABFB3000803C1 /* Assets.xcassets */; };
 		EBBCFCFF299ABFB3000803C1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBBCFCFE299ABFB3000803C1 /* Preview Assets.xcassets */; };
+		EBBCFD06299B59DF000803C1 /* HabitItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBCFD05299B59DF000803C1 /* HabitItem.swift */; };
+		EBBCFD08299B5A8B000803C1 /* Habits.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBCFD07299B5A8B000803C1 /* Habits.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB18E8D5299B680B00F14CA3 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		EB18E8D7299BBA4600F14CA3 /* HabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitView.swift; sourceTree = "<group>"; };
 		EBBCFCF4299ABFB1000803C1 /* Day47-Milestone-HabitTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Day47-Milestone-HabitTrackerApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBBCFCF7299ABFB1000803C1 /* Day47_Milestone_HabitTrackerAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day47_Milestone_HabitTrackerAppApp.swift; sourceTree = "<group>"; };
 		EBBCFCF9299ABFB1000803C1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EBBCFCFB299ABFB3000803C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBBCFCFE299ABFB3000803C1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EBBCFD05299B59DF000803C1 /* HabitItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitItem.swift; sourceTree = "<group>"; };
+		EBBCFD07299B5A8B000803C1 /* Habits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habits.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +61,10 @@
 			children = (
 				EBBCFCF7299ABFB1000803C1 /* Day47_Milestone_HabitTrackerAppApp.swift */,
 				EBBCFCF9299ABFB1000803C1 /* ContentView.swift */,
+				EB18E8D7299BBA4600F14CA3 /* HabitView.swift */,
+				EBBCFD05299B59DF000803C1 /* HabitItem.swift */,
+				EBBCFD07299B5A8B000803C1 /* Habits.swift */,
+				EB18E8D5299B680B00F14CA3 /* AddView.swift */,
 				EBBCFCFB299ABFB3000803C1 /* Assets.xcassets */,
 				EBBCFCFD299ABFB3000803C1 /* Preview Content */,
 			);
@@ -139,6 +151,10 @@
 			files = (
 				EBBCFCFA299ABFB1000803C1 /* ContentView.swift in Sources */,
 				EBBCFCF8299ABFB1000803C1 /* Day47_Milestone_HabitTrackerAppApp.swift in Sources */,
+				EB18E8D6299B680B00F14CA3 /* AddView.swift in Sources */,
+				EB18E8D8299BBA4600F14CA3 /* HabitView.swift in Sources */,
+				EBBCFD08299B5A8B000803C1 /* Habits.swift in Sources */,
+				EBBCFD06299B59DF000803C1 /* HabitItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
