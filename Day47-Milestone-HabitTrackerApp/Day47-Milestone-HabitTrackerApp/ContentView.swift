@@ -12,7 +12,11 @@ struct ContentView: View {
     @State private var showingAddHabit = false
     @State private var increasing = false
     @State private var decreasing = false
-    @State private var amount = 0
+    @State private var defaultAmount = 0
+    
+    func showAmount(_ amount:Int){
+        self.amount = defaultAmount
+    }
     
     var body: some View {
         NavigationView{
@@ -24,8 +28,8 @@ struct ContentView: View {
                         }label: {
                             VStack{
                                 HStack(){
-                                    Stepper(value:$amount, in: 0...20){
-                                        Text("\(item.habitName) : \()")//
+                                    Stepper(value: $defaultAmount, in: 0...20){
+                                        Text("\(item.habitName) : \(item.amount)")
                                     }
     //                                Text(item.habitName)
     //                                Spacer()
