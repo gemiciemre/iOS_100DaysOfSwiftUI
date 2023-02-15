@@ -14,9 +14,6 @@ struct ContentView: View {
     @State private var decreasing = false
     @State private var defaultAmount = 0
     
-    func showAmount(_ amount:Int){
-        self.amount = defaultAmount
-    }
     
     var body: some View {
         NavigationView{
@@ -28,21 +25,13 @@ struct ContentView: View {
                         }label: {
                             VStack{
                                 HStack(){
-                                    Stepper(value: $defaultAmount, in: 0...20){
-                                        Text("\(item.habitName) : \(item.amount)")
-                                    }
-    //                                Text(item.habitName)
-    //                                Spacer()
-    //                                Button{
-    //                                    increasing = true
-    //                                }label: {
-    //                                    Image(systemName: "minus")
-    //                                }.padding()
-    //                                Button{
-    //                                    increasing = true
-    //                                }label: {
-    //                                    Image(systemName: "plus")
-    //                                }
+//                                    Stepper(onIncrement: {
+//                                        item.amount += 1
+//                                    }, onDecrement: {
+//                                        item.amount -= 1
+//                                    }) {
+//                                        Text("\(item.habitName) : \(item.amount)")
+//                                    }
                                 }
                             }
                         }

@@ -9,7 +9,7 @@ import Foundation
 
 struct HabitItem: Identifiable,Codable {
     var id = UUID()
-    let habitName : String
-    let description : String
+    var habitName : String
+    var description : String
     var amount : Int
 }
