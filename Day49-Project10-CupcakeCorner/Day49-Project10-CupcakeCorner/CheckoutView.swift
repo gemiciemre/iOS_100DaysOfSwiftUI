@@ -11,13 +11,15 @@ struct CheckoutView: View {
     @ObservedObject var order : Order
     
     @State private var confirmationMessage = ""
+    @State private var errorMessage = ""
+    @State private var showingErrorMessage = false
     @State private var showingConfirmation = false
     
     var body: some View {
         ScrollView{
             VStack{
                 AsyncImage(url: URL(string: "https://hws.dev/img/cupcakes@3x.jpg"), scale: 3){ image in
-                        
+                        image
                 }placeholder: {
                     ProgressView()
                 }
@@ -39,6 +41,11 @@ struct CheckoutView: View {
         }message: {
             Text(confirmationMessage)
         }
+        .alert("Oops!!", isPresented: $showingErrorMessage) {
+            Button("OK") {}
+        } message: {
+            Text(errorMessage)
+        }
     }
     func placeOrder() async{
         guard let encoded = try? JSONEncoder().encode(order)else{
@@ -59,7 +66,8 @@ struct CheckoutView: View {
             showingConfirmation = true
         }
         catch{
-            print("Checkout failed.")
+            errorMessage = "Sorry, checkout failed. \n\nMessage: Something went wrong.Please try again later."
+            showingErrorMessage = true
         }
     }
 }

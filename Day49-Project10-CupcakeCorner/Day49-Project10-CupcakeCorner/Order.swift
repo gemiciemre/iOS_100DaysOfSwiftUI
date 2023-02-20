@@ -37,6 +37,15 @@ class Order : ObservableObject,Codable{
         if name.isEmpty || streetAddress.isEmpty || city.isEmpty || zip.isEmpty {
             return false
         }
+        else if name.count < 3{
+            return false
+        }
+        else if zip.count < 5{
+            return false
+        }
+        else if streetAddress.count < 20{
+            return false
+        }
         return true
     }
     
