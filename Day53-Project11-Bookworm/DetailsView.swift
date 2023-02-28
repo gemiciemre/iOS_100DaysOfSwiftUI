@@ -32,6 +32,11 @@ struct DetailsView: View {
             Text(book.author ?? "Unknown author")
                 .font(.title)
                 .foregroundColor(.secondary)
+            Spacer()
+
+            Text("Date of Addition : \(book.date ?? Date.now, format: .dateTime.day().month().year())")
+                .foregroundColor(.secondary)
+                .font(.subheadline)
             
             Text(book.review ?? "No review")
                 .padding()
