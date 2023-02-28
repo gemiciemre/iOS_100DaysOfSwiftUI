@@ -54,9 +54,10 @@ struct AddBookView: View {
                         dismiss()
                     }
                 }
+                .disabled(title.isEmpty || author.isEmpty || genre.isEmpty || review.count < 10)
             }
-            .navigationTitle("Add Book")
         }
+        .navigationTitle("Add Book")
     }
 }
 
