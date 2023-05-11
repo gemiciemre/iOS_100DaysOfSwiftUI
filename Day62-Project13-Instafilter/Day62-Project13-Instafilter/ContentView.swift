@@ -15,8 +15,14 @@ struct ContentView: View {
     @State private var inputImage : UIImage?
     
     @State private var filterIntentsity = 0.5
+    @State private var filterRadius = 0.5
+    @State private var filterAngle  = 0.0
+    
     @State private var showingImagePicker = false
     @State private var showingFilterSheet = false
+    @State private var checkingImageSaver = false
+    @State private var showingRadiusSlider = false // Challenge 2
+    @State private var showingAngleSlider = false // Challenge 3
     
     @State private var processedImage: UIImage?
     @State private var currentFilter : CIFilter = CIFilter.sepiaTone()
@@ -49,13 +55,35 @@ struct ContentView: View {
                 }
                 .padding(.vertical)
                 
+                if showingRadiusSlider {
+                    HStack{
+                        Text("Radius")
+                        Slider(value: $filterRadius)
+                            .onChange(of: filterRadius){ _ in applyProcessing()
+                        }
+                    }
+                    .padding(.vertical)
+                }
+                if showingAngleSlider {
+                    HStack{
+                        Text("Angle")
+                        Slider(value: $filterAngle)
+                            .onChange(of: filterAngle){ _ in applyProcessing()
+                        }
+                    }
+                    .padding(.vertical)
+                }
+                
                 HStack{
                     Button("Change Filter"){
                         showingFilterSheet = true
+                        showingRadiusSlider = false
+                        showingAngleSlider = false
                     }
                     Spacer()
                     
                     Button("Save", action: save)
+                        .disabled(checkingImageSaver == false)
                 }
             }
             .padding([.horizontal,.bottom])
@@ -65,14 +93,19 @@ struct ContentView: View {
             }
             .onChange(of: inputImage){ _ in loadImage()}
             .confirmationDialog("Select a Filter", isPresented: $showingFilterSheet){
+                
                 Button("Crystallize") { setFilter(CIFilter.crystallize()) }
                 Button("Edges") { setFilter(CIFilter.edges()) }
                 Button("Gaussian Blur") { setFilter(CIFilter.gaussianBlur()) }
                 Button("Pixellate") { setFilter(CIFilter.pixellate()) }
                 Button("Sepia Tone") { setFilter(CIFilter.sepiaTone()) }
-                Button("Unsharp Mask") { setFilter(CIFilter.unsharpMask()) }
+                //Button("Unsharp Mask") { setFilter(CIFilter.unsharpMask()) }
                 Button("Vignette") { setFilter(CIFilter.vignette()) }
+                Button("Box Blur") {setFilter(CIFilter.boxBlur())}
+                Button("Color Matrix") {setFilter(CIFilter.colorMatrix())}
+                Button ("Circular Wrap") {setFilter(CIFilter.circularWrap())}
                 Button("Cancel", role: .cancel) { }
+                // confirmationDialog can't allow to use button more 10 Buttons.
             }
         }
     }
@@ -82,6 +115,7 @@ struct ContentView: View {
         let beginImage = CIImage(image: inputImage)
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
         applyProcessing()
+        
     }
     
     func save(){
@@ -100,8 +134,12 @@ struct ContentView: View {
         let inputKeys = currentFilter.inputKeys
         
         if inputKeys.contains(kCIInputIntensityKey){currentFilter.setValue(filterIntentsity, forKey: kCIInputIntensityKey)}
-        if inputKeys.contains(kCIInputRadiusKey){ currentFilter.setValue(filterIntentsity * 200, forKey: kCIInputRadiusKey)}
+        if inputKeys.contains(kCIInputRadiusKey){
+            currentFilter.setValue(filterRadius * 200, forKey: kCIInputRadiusKey)
+            showingRadiusSlider = true
+        }
         if inputKeys.contains(kCIInputScaleKey){ currentFilter.setValue(filterIntentsity * 10, forKey: kCIInputScaleKey )}
+        if inputKeys.contains(kCIInputAngleKey){ currentFilter.setValue(filterAngle, forKey: kCIInputAngleKey)}
             
         guard let outputImage = currentFilter.outputImage else { return }
         
@@ -114,6 +152,8 @@ struct ContentView: View {
     func setFilter (_ filter: CIFilter){
         currentFilter = filter
         loadImage()
+        
+        checkingImageSaver = true // Challenge 1
     }
 }
 
